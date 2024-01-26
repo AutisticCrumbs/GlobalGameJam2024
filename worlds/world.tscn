@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpim8e1rgikp4"]
+
+[ext_resource type="PackedScene" uid="uid://bjhs5g45bjmrt" path="res://funny_man/funny_man.tscn" id="1_5ldq5"]
+[ext_resource type="Texture2D" uid="uid://cx8pywfgfhksx" path="res://worlds/ground.png" id="2_nkbt2"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_likoc"]
+texture = ExtResource("2_nkbt2")
+texture_region_size = Vector2i(100, 100)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
+
+[sub_resource type="TileSet" id="TileSet_ea4e8"]
+tile_size = Vector2i(100, 100)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_likoc")
+
+[node name="World1" type="Node2D"]
+
+[node name="Funny Man" parent="." instance=ExtResource("1_5ldq5")]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_ea4e8")
+format = 2
+layer_0/tile_data = PackedInt32Array(131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 131068, 0, 0, 131067, 0, 0, 131066, 0, 0, -65543, 0, 0, -7, 0, 0, 65529, 0, 0, -131064, 0, 0, -65528, 0, 0, 8, 0, 0)

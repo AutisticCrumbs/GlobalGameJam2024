@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://bjhs5g45bjmrt"]
+
+[ext_resource type="Script" path="res://funny_man/funny_man.gd" id="1_6w4i0"]
+[ext_resource type="Texture2D" uid="uid://dgupmh7fshct0" path="res://funny_man/funny_man_idle_0.png" id="1_ohvg7"]
+[ext_resource type="Texture2D" uid="uid://dibj5balqv4xg" path="res://funny_man/funny_man_idle_1.png" id="2_f8jxq"]
+[ext_resource type="Texture2D" uid="uid://bk8bav6qomieb" path="res://funny_man/funny_man_walk_0.png" id="4_35j60"]
+[ext_resource type="Texture2D" uid="uid://bwq07gui3c613" path="res://funny_man/funny_man_mid_air_0.png" id="4_t4bx7"]
+[ext_resource type="Texture2D" uid="uid://cychyy7xy5bbo" path="res://funny_man/funny_man_walk_1.png" id="5_m5cwu"]
+[ext_resource type="Texture2D" uid="uid://2swj7i40qdjl" path="res://funny_man/funny_man_walk_2.png" id="6_hq0ed"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nhobu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f8jxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_ohvg7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_t4bx7")
+}],
+"loop": true,
+"name": &"mid_air",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_35j60")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_m5cwu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hq0ed")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_m5cwu")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yfehn"]
+size = Vector2(54, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i812y"]
+size = Vector2(50, 20)
+
+[node name="Funny Man" type="CharacterBody2D"]
+script = ExtResource("1_6w4i0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nhobu")
+animation = &"mid_air"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(9, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(9, 3)
+shape = SubResource("RectangleShape2D_yfehn")
+
+[node name="Button Press Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Button Press Area"]
+position = Vector2(9, 38)
+shape = SubResource("RectangleShape2D_i812y")
+debug_color = Color(0.819608, 0.247059, 0.788235, 0.419608)
