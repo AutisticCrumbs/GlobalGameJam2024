@@ -13,9 +13,7 @@ func _physics_process(_delta):
 		_grounded = false
 		velocity.y += gravity * _delta
 		if velocity.y < 0:
-			_funny_animation.play("mid_air")
-			_funny_animation.flip_v = false
-			_funny_animation.flip_h = velocity.x < 0
+			_funny_animation.pause()
 		if velocity.y >= 0:
 			_grounded = true
 		

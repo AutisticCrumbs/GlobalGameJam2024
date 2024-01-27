@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpim8e1rgikp4"]
+[gd_scene load_steps=6 format=3 uid="uid://bpim8e1rgikp4"]
 
 [ext_resource type="PackedScene" uid="uid://bjhs5g45bjmrt" path="res://funny_man/funny_man.tscn" id="1_5ldq5"]
 [ext_resource type="Texture2D" uid="uid://cx8pywfgfhksx" path="res://worlds/ground.png" id="2_nkbt2"]
@@ -16,11 +16,46 @@ tile_size = Vector2i(100, 100)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_likoc")
 
-[node name="World1" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o24nx"]
+size = Vector2(40, 1130)
 
-[node name="Funny Man" parent="." instance=ExtResource("1_5ldq5")]
+[node name="World" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1000.0
+offset_top = -880.0
+offset_right = 1000.0
+offset_bottom = 200.0
+color = Color(0.486275, 1, 0.996078, 1)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_ea4e8")
 format = 2
-layer_0/tile_data = PackedInt32Array(131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 131068, 0, 0, 131067, 0, 0, 131066, 0, 0, -65543, 0, 0, -7, 0, 0, 65529, 0, 0, -131064, 0, 0, -65528, 0, 0, 8, 0, 0)
+layer_0/tile_data = PackedInt32Array(131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 131068, 0, 0, 131067, 0, 0, 131066, 0, 0, 131065, 0, 0, 131064, 0, 0, 65544, 0, 0, 131063, 0, 0, 131062, 0, 0, 65545, 0, 0)
+
+[node name="Funny Man" parent="." instance=ExtResource("1_5ldq5")]
+position = Vector2(0, 52)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -340)
+zoom = Vector2(0.6, 0.6)
+
+[node name="Left Wall" type="StaticBody2D" parent="."]
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall"]
+light_mask = 7
+visibility_layer = 7
+position = Vector2(-980, -365)
+shape = SubResource("RectangleShape2D_o24nx")
+
+[node name="Right Wall2" type="StaticBody2D" parent="."]
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall2"]
+light_mask = 7
+visibility_layer = 7
+position = Vector2(980, -340)
+shape = SubResource("RectangleShape2D_o24nx")
