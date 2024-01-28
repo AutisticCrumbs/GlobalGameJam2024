@@ -78,9 +78,9 @@ position = Vector2(-700, 75)
 [node name="Sprite2D" type="Sprite2D" parent="Left Button"]
 texture = ExtResource("3_2xng1")
 
-[node name="Is Player Standing On L Button" type="Area2D" parent="Left Button"]
+[node name="Top of L Button" type="Area2D" parent="Left Button"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Button/Is Player Standing On L Button"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Button/Top of L Button"]
 position = Vector2(0, -19.5)
 shape = SubResource("RectangleShape2D_n6dpv")
 
@@ -98,9 +98,9 @@ position = Vector2(700, 75)
 [node name="Sprite2D" type="Sprite2D" parent="Right Button"]
 texture = ExtResource("3_2xng1")
 
-[node name="Is Player Standing On R Button" type="Area2D" parent="Right Button"]
+[node name="Top of R Button" type="Area2D" parent="Right Button"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Button/Is Player Standing On R Button"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Button/Top of R Button"]
 position = Vector2(0, -19.5)
 shape = SubResource("RectangleShape2D_n6dpv")
 
@@ -112,5 +112,14 @@ shape = SubResource("RectangleShape2D_nctgn")
 position = Vector2(0, 12.5)
 shape = SubResource("RectangleShape2D_fv8qy")
 
-[connection signal="body_entered" from="Left Button/Is Player Standing On L Button" to="." method="_on_l_button_body_entered"]
-[connection signal="body_entered" from="Right Button/Is Player Standing On R Button" to="." method="_on_r_button_body_entered"]
+[node name="Button Count" type="Label" parent="."]
+offset_left = -960.0
+offset_top = -904.0
+offset_right = -612.0
+offset_bottom = -780.0
+theme_override_colors/font_color = Color(0.819608, 0, 0.129412, 1)
+theme_override_font_sizes/font_size = 90
+autowrap_mode = 3
+
+[connection signal="body_entered" from="Left Button/Top of L Button" to="." method="_on_l_button_body_entered"]
+[connection signal="body_entered" from="Right Button/Top of R Button" to="." method="_on_r_button_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjhs5g45bjmrt"]
+[gd_scene load_steps=9 format=3 uid="uid://bjhs5g45bjmrt"]
 
 [ext_resource type="Script" path="res://funny_man/funny_man.gd" id="1_6w4i0"]
 [ext_resource type="Texture2D" uid="uid://dgupmh7fshct0" path="res://funny_man/funny_man_idle_0.png" id="1_ohvg7"]
@@ -41,9 +41,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfehn"]
 size = Vector2(54, 90)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i812y"]
-size = Vector2(50, 20)
-
 [node name="Funny Man" type="CharacterBody2D"]
 script = ExtResource("1_6w4i0")
 
@@ -54,10 +51,3 @@ animation = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(9, 3)
 shape = SubResource("RectangleShape2D_yfehn")
-
-[node name="Button Press Area" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Button Press Area"]
-position = Vector2(9, 38)
-shape = SubResource("RectangleShape2D_i812y")
-debug_color = Color(0.819608, 0.247059, 0.788235, 0.419608)
