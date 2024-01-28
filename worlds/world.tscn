@@ -57,5 +57,9 @@ collision_mask = 15
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall2"]
 light_mask = 7
 visibility_layer = 7
-position = Vector2(980, -340)
+position = Vector2(980, -365)
 shape = SubResource("RectangleShape2D_o24nx")
+
+[node name="Right Button" type="Area2D" parent="."]
+
+[node name="Left Button" type="Area2D" parent="."]
