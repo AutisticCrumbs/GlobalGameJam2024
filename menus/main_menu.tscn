@@ -15,7 +15,7 @@ color = Color(0.192157, 0.192157, 0.192157, 0.72549)
 offset_right = 1152.0
 offset_bottom = 158.0
 theme_override_font_sizes/font_size = 100
-text = "The 100 Buttons"
+text = "The 50 Buttons"
 horizontal_alignment = 1
 vertical_alignment = 1
 

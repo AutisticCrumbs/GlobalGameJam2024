@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpim8e1rgikp4"]
+[gd_scene load_steps=11 format=3 uid="uid://bpim8e1rgikp4"]
 
 [ext_resource type="PackedScene" uid="uid://bjhs5g45bjmrt" path="res://funny_man/funny_man.tscn" id="1_5ldq5"]
+[ext_resource type="Script" path="res://worlds/world.gd" id="1_a5ue7"]
 [ext_resource type="Texture2D" uid="uid://cx8pywfgfhksx" path="res://worlds/ground.png" id="2_nkbt2"]
+[ext_resource type="Texture2D" uid="uid://dj87tibl2lfnd" path="res://worlds/big_red_button.png" id="3_2xng1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_likoc"]
 texture = ExtResource("2_nkbt2")
@@ -19,7 +21,17 @@ sources/0 = SubResource("TileSetAtlasSource_likoc")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o24nx"]
 size = Vector2(40, 1130)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6dpv"]
+size = Vector2(84, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nctgn"]
+size = Vector2(84, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fv8qy"]
+size = Vector2(100, 25)
+
 [node name="World" type="Node2D"]
+script = ExtResource("1_a5ue7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -1000.0
@@ -34,7 +46,7 @@ format = 2
 layer_0/tile_data = PackedInt32Array(131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 131068, 0, 0, 131067, 0, 0, 131066, 0, 0, 131065, 0, 0, 131064, 0, 0, 65544, 0, 0, 131063, 0, 0, 131062, 0, 0, 65545, 0, 0)
 
 [node name="Funny Man" parent="." instance=ExtResource("1_5ldq5")]
-position = Vector2(0, 52)
+position = Vector2(-9, 52)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -340)
@@ -50,16 +62,55 @@ visibility_layer = 7
 position = Vector2(-980, -365)
 shape = SubResource("RectangleShape2D_o24nx")
 
-[node name="Right Wall2" type="StaticBody2D" parent="."]
+[node name="Right Wall" type="StaticBody2D" parent="."]
 collision_layer = 15
 collision_mask = 15
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall"]
 light_mask = 7
 visibility_layer = 7
 position = Vector2(980, -365)
 shape = SubResource("RectangleShape2D_o24nx")
 
-[node name="Right Button" type="Area2D" parent="."]
+[node name="Left Button" type="StaticBody2D" parent="."]
+position = Vector2(-700, 75)
 
-[node name="Left Button" type="Area2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="Left Button"]
+texture = ExtResource("3_2xng1")
+
+[node name="Is Player Standing On L Button" type="Area2D" parent="Left Button"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Button/Is Player Standing On L Button"]
+position = Vector2(0, -19.5)
+shape = SubResource("RectangleShape2D_n6dpv")
+
+[node name="Left Button Pressable" type="CollisionShape2D" parent="Left Button"]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_nctgn")
+
+[node name="Left Button Base" type="CollisionShape2D" parent="Left Button"]
+position = Vector2(0, 12.5)
+shape = SubResource("RectangleShape2D_fv8qy")
+
+[node name="Right Button" type="StaticBody2D" parent="."]
+position = Vector2(700, 75)
+
+[node name="Sprite2D" type="Sprite2D" parent="Right Button"]
+texture = ExtResource("3_2xng1")
+
+[node name="Is Player Standing On R Button" type="Area2D" parent="Right Button"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Button/Is Player Standing On R Button"]
+position = Vector2(0, -19.5)
+shape = SubResource("RectangleShape2D_n6dpv")
+
+[node name="Right Button Pressable" type="CollisionShape2D" parent="Right Button"]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_nctgn")
+
+[node name="Right Button Base" type="CollisionShape2D" parent="Right Button"]
+position = Vector2(0, 12.5)
+shape = SubResource("RectangleShape2D_fv8qy")
+
+[connection signal="body_entered" from="Left Button/Is Player Standing On L Button" to="." method="_on_l_button_body_entered"]
+[connection signal="body_entered" from="Right Button/Is Player Standing On R Button" to="." method="_on_r_button_body_entered"]
